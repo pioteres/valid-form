@@ -11,31 +11,32 @@ function Form() {
     e.preventDefault();
     setIsSubmited(!isSubmited);
   }
+
   return (
     <div>
       {!isSubmited ?
-      <form>
+      <form onSubmit={handleSubmit}>
         <div>
-          <input type="text" name="name" placeholder="Podaj imię" />
+          <input type="text" name="name" placeholder="Podaj imię" required />
         </div>
         <div>
-          <input type="email" name="email" placeholder="Podaj adres e-mail" />
+          <input type="email" name="email" placeholder="Podaj adres e-mail" required />
         </div>
         <div>
-          <textarea name="bio" placeholder="Krótkie bio" />
+          <textarea name="bio" placeholder="Krótkie bio" required />
         </div>
         <div>
-          <input type="radio" id="sex-m" name="sex" value="M" />
-          <label for="sex-m">Mężczyzna</label>
-          <input type="radio" id="sex-f" name="sex" value="F" />
-          <label for="sex-f">Kobieta</label>
+          <input type="radio" id="sex-m" name="sex" value="M" required />
+          <label htmlFor="sex-m">Mężczyzna</label>
+          <input type="radio" id="sex-f" name="sex" value="F" required />
+          <label htmlFor="sex-f">Kobieta</label>
         </div>
         <div>
-          <input id="rules" type="checkbox" name="rules" />
-          <label for="rules">Akceptuję regulamin</label>
+          <input id="rules" type="checkbox" name="rules" required />
+          <label htmlFor="rules">Akceptuję regulamin</label>
         </div>
         <div>
-          <button type="submit" onClick={handleSubmit}>Prześlij</button>
+          <button type="submit">Prześlij</button>
         </div>
 
       </form> :
