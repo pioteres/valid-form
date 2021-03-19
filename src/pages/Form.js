@@ -10,23 +10,10 @@ const errorsInitValues = {
 
 function Form() {
   const [isSubmited, setIsSubmited] = useState();
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    bio: '',
-    sex: ''
-  })
   const [ errors, setError] = useState(errorsInitValues);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    setFormData({
-      name: e.target.name.value,
-      email: e.target.email.value,
-      bio: e.target.bio.value,
-      sex: e.target.sex.value === 'M' ? 'mężczyzna' : 'kobieta'
-    })
     setError(errorsInitValues);
     e.target.reset();
     setIsSubmited(true);
@@ -74,13 +61,7 @@ function Form() {
           <button type="submit">Prześlij</button>
         </div>
       </form>
-      {isSubmited && <div>
-        <p>Imię: {formData.name}</p>
-        <p>E-mail: {formData.email}</p>
-        <p>Bio: {formData.bio}</p>
-        <p>Płeć: {formData.sex}</p>
-        <p>Regulamin: zaakceptowany</p>
-      </div>}
+      {isSubmited && <p>Dziękujemy za wysłanie</p>}
     </div>
   )
 }
