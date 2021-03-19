@@ -45,8 +45,7 @@ function MyForm() {
     validateOnChange: false,
     validateOnBlur: false,
     validate,
-    onSubmit: (values) => {
-      console.log(formik.values);
+    onSubmit: (values) => {      
       setIsSubmitted(true);
       formik.resetForm();
     },
