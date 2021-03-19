@@ -1,37 +1,39 @@
 import React, { useState } from 'react';
 
+const errorsInitValues = {
+  name: false,
+  email: false,
+  bio: false,
+  sex: false,
+  rules: false
+};
+
 function Form() {
   const [isSubmited, setIsSubmited] = useState();
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [bio, setBio] = useState('');
-  const [sex, setSex] = useState('M');
-  const [ errors, setError] = useState({
-    name: false,
-    email: false,
-    bio: false,
-    sex: false,
-    rules: false
-  });
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    bio: '',
+    sex: ''
+  })
+  const [ errors, setError] = useState(errorsInitValues);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setName(e.target.name.value);
-    setEmail(e.target.email.value);
-    setBio(e.target.bio.value);
-    setSex(e.target.sex.value === 'M' ? 'mężczyzna' : 'kobieta');
-    setError({
-      name: false,
-      email: false,
-      bio: false,
-      sex: false,
-      rules: false
-    });
+
+    setFormData({
+      name: e.target.name.value,
+      email: e.target.email.value,
+      bio: e.target.bio.value,
+      sex: e.target.sex.value === 'M' ? 'mężczyzna' : 'kobieta'
+    })
+    setError(errorsInitValues);
     e.target.reset();
     setIsSubmited(true);
   }
 
   const handleChange = (e) => {
+    setError({...errors,[e.target.name]: false});
     e.target.style.outline = '';
   }
 
@@ -73,10 +75,10 @@ function Form() {
         </div>
       </form>
       {isSubmited && <div>
-        <p>Imię: {name}</p>
-        <p>E-mail: {email}</p>
-        <p>Bio: {bio}</p>
-        <p>Płeć: {sex}</p>
+        <p>Imię: {formData.name}</p>
+        <p>E-mail: {formData.email}</p>
+        <p>Bio: {formData.bio}</p>
+        <p>Płeć: {formData.sex}</p>
         <p>Regulamin: zaakceptowany</p>
       </div>}
     </div>
