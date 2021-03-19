@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import FormError from './FormError';
 
 const errorsInitValues = {
   name: false,
@@ -36,15 +37,15 @@ function Form() {
       <form onSubmit={handleSubmit} onInvalid={handleValid} >
         <div>
           <input type="text" name="name" placeholder="Podaj imię" required onChange={handleChange} />
-          {errors.name ? <span className="error">Pole wymagane</span>: <span></span>}
+          <FormError error={errors.name}/>
         </div>
         <div>
           <input type="email" name="email" placeholder="Podaj adres e-mail" required onChange={handleChange} />
-          {errors.email ? <span className="error">Pole wymagane</span>: <span></span>}
+          <FormError error={errors.email}/>
         </div>
         <div>
           <textarea name="bio" placeholder="Krótkie bio" required onChange={handleChange} />
-          {errors.bio ? <span className="error">Pole wymagane</span>: <span></span>}
+          <FormError error={errors.bio}/>
         </div>
         <div>
           <input type="radio" id="sex-m" name="sex" value="M" required defaultChecked onChange={handleChange}/>
@@ -55,7 +56,7 @@ function Form() {
         <div>
           <input id="rules" type="checkbox" name="rules" required onClick={handleChange} />
           <label htmlFor="rules">Akceptuję regulamin</label>
-          {errors.rules ? <span className="error">Pole wymagane</span>: <span></span>}
+          <FormError error={errors.rules}/>
         </div>
         <div>
           <button type="submit">Prześlij</button>
