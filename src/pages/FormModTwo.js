@@ -15,9 +15,6 @@ function FormModTwo() {
     e.target.reset();
   };
 
-  const handleChange = (e) => {
-    e.target.style.outline='none';
-  }
   return (
     <div>
       <form onSubmit={handleSubmit(onSubmit)}>
@@ -28,7 +25,7 @@ function FormModTwo() {
             name="firstName"
             placeholder="Podaj imię"
             ref={register({ required: true })}
-            onChange={handleChange}
+
           />
           {errors.firstName && <span className="error">Pole wymagane</span>}
         </div>
@@ -42,7 +39,7 @@ function FormModTwo() {
               pattern: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
               required: true,
             })}
-            onChange={handleChange}
+
           />
           {errors.email && <span className="error">Pole wymagane</span>}
         </div>
@@ -52,7 +49,7 @@ function FormModTwo() {
             style={errors.bio ? styles.error : null }
             placeholder="Krótkie bio"
             ref={register({ required: true })}
-            onChange={handleChange}
+
           />
           {errors.bio && <span className="error">Pole wymagane</span>}
         </div>
@@ -76,7 +73,7 @@ function FormModTwo() {
             type="checkbox"
             name="rules"
             ref={register({ required: true })}
-            onChange={handleChange}
+
           />
           <label htmlFor="rules">Akceptuję regulamin</label>
           {errors.rules && <span className="error">Pole wymagane</span>}
