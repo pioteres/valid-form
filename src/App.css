@@ -9,3 +9,6 @@ div {
   margin-bottom: 5px;
   color: red;
 }
+input.error {
+  outline: 1px solid red;
+}

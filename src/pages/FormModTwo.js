@@ -1,36 +1,83 @@
-import React, { useState } from 'react';
-import { useForm } from 'react-hook-form';
+import React, { useState } from "react";
+import { useForm } from "react-hook-form";
 
-function FormModTwo () {
+const styles={
+  error: {
+    outline: '1px solid red',
+  }
+}
+
+function FormModTwo() {
   const { register, handleSubmit, errors } = useForm();
   const [isSubmitted, setIsSubmitted] = useState();
-  const onSubmit = (values,e ) => {
+  const onSubmit = (values, e) => {
     setIsSubmitted(true);
     e.target.reset();
+  };
+
+  const handleChange = (e) => {
+    e.target.style.outline='none';
   }
   return (
     <div>
-      <form onSubmit={handleSubmit(onSubmit)} >
+      <form onSubmit={handleSubmit(onSubmit)}>
         <div>
-          <input type="text" name="firstName" placeholder="Podaj imię" ref={register({ required: true })} />
+          <input
+            type="text"
+            style={errors.firstName ? styles.error : null }
+            name="firstName"
+            placeholder="Podaj imię"
+            ref={register({ required: true })}
+            onChange={handleChange}
+          />
           {errors.firstName && <span className="error">Pole wymagane</span>}
         </div>
         <div>
-          <input type="email" name="email" placeholder="Podaj adres e-mail" ref={register({ pattern: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i, required: true})} />
+          <input
+            type="email"
+            style={errors.email ? styles.error : null }
+            name="email"
+            placeholder="Podaj adres e-mail"
+            ref={register({
+              pattern: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
+              required: true,
+            })}
+            onChange={handleChange}
+          />
           {errors.email && <span className="error">Pole wymagane</span>}
         </div>
         <div>
-          <textarea name="bio" placeholder="Krótkie bio" ref={register({ required: true })} />
+          <textarea
+            name="bio"
+            style={errors.bio ? styles.error : null }
+            placeholder="Krótkie bio"
+            ref={register({ required: true })}
+            onChange={handleChange}
+          />
           {errors.bio && <span className="error">Pole wymagane</span>}
         </div>
         <div>
-          <input type="radio" id="sex-m" name="sex" value="M" ref={register} defaultChecked />
+          <input
+            type="radio"
+            id="sex-m"
+            name="sex"
+            value="M"
+            ref={register}
+            defaultChecked
+          />
           <label htmlFor="sex-m">Mężczyzna</label>
-          <input type="radio" id="sex-f" name="sex" value="F"  />
+          <input type="radio" id="sex-f" name="sex" value="F" />
           <label htmlFor="sex-f">Kobieta</label>
         </div>
         <div>
-          <input id="rules" type="checkbox" name="rules" ref={register({ required: true })} />
+          <input
+            id="rules"
+            style={errors.rules ? styles.error : null }
+            type="checkbox"
+            name="rules"
+            ref={register({ required: true })}
+            onChange={handleChange}
+          />
           <label htmlFor="rules">Akceptuję regulamin</label>
           {errors.rules && <span className="error">Pole wymagane</span>}
         </div>
@@ -40,7 +87,7 @@ function FormModTwo () {
       </form>
       {isSubmitted && <p>Dziękujemy za wysłanie</p>}
     </div>
-  )
+  );
 }
 
 export default FormModTwo;
