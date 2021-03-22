@@ -45,7 +45,7 @@ function MyForm() {
     validateOnChange: false,
     validateOnBlur: false,
     validate,
-    onSubmit: (values) => {      
+    onSubmit: (values) => {
       setIsSubmitted(true);
       formik.resetForm();
     },
@@ -59,7 +59,7 @@ function MyForm() {
 
   return (
     <div>
-      <form onSubmit={formik.handleSubmit}>
+      <form onSubmit={formik.handleSubmit} noValidate >
         <div>
           <input style={getStyles(formik.errors, 'firstName')}
             type="text"

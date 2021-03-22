@@ -17,7 +17,7 @@ function FormModTwo() {
 
   return (
     <div>
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form onSubmit={handleSubmit(onSubmit)} noValidate >
         <div>
           <input
             type="text"
